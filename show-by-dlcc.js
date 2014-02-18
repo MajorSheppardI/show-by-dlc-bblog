@@ -43,8 +43,6 @@ BBLog.handle("add.plugin", {
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
     { 
-      console.log(url)
-      console.log(pages[i])
       if(url.indexOf("/" + pages[i] + "/") != -1)
       {  
         instance.AddDLCMenu(instance,pages[i]);
@@ -61,8 +59,6 @@ BBLog.handle("add.plugin", {
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
     { 
-      console.log(url)
-      console.log(pages[i])
       if(url.indexOf("/" + pages[i] + "/") != -1)
       {  
         instance.AddDLCMenu(instance,pages[i]);
@@ -141,6 +137,10 @@ BBLog.handle("add.plugin", {
     {
       var parentelement = "weapon-stats-list";
     }
+    if(page == "awards")
+    {
+      var parentelement = "awards-list";
+    }    
     $(".abd").click(function() {
       $(".abd.active").removeClass("active");
       $(this).addClass("active");

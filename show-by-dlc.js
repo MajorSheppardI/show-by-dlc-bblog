@@ -41,9 +41,8 @@ BBLog.handle("add.plugin", {
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
     { 
-      if(url.match("/" + pages[i] + "/"))
+      if(url.indexOf("/" + pages[i] + "/"))
       {  
-        
         instance.AddDLCMenu(instance,pages[i]);
         break;
       }
@@ -55,7 +54,7 @@ BBLog.handle("add.plugin", {
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
     { 
-      if(url.match('/\/' + pages[i] + '\//'))
+      if(url.indexOf("/" + pages[i] + "/"))
       {  
         instance.AddDLCMenu(instance,pages[i]);
         break;

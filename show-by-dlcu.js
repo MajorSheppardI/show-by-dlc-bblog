@@ -47,7 +47,7 @@ BBLog.handle("add.plugin", {
       if(url.indexOf("/" + pages[i] + "/") != -1)
       {  
         instance.AddDLCMenu(instance,pages[i]);
-        break;
+        return;
       }
     }
     }
@@ -64,7 +64,7 @@ BBLog.handle("add.plugin", {
       if(url.indexOf("/" + pages[i] + "/"))
       {  
         instance.AddDLCMenu(instance,pages[i]);
-        break;
+        return;
       }
     }
     }

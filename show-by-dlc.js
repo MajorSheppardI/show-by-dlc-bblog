@@ -9,8 +9,8 @@
 */
 
 BBLog.handle("add.plugin", {
-  id : "assignments-by-dlc",
-  name : "Assignments by DLC",
+  id : "show-by-dlc",
+  name : "Show by DLC",
   
   configFlags : [
     ["option.xp1", 1], //China Rising
@@ -38,112 +38,120 @@ BBLog.handle("add.plugin", {
     
   init : function(instance){
     var url = window.location.href;
-    if(url.match(/\/assignments\//))
-    {
-      instance.AddAssignmentsMenu(instance);
+    var pages = ["assignments","weaponunlocks","awards","weapons"];
+    for (var i=0;i<4;i++)
+    { 
+      if(url.match('/\/' + pages[i] + '\//'))
+      {  
+        instance.AddDLCMenu(instance,pages[i]);
+        break;
+      }
     }
   },
 
   domchange : function(instance){
     var url = window.location.href;
-    if(url.match(/\/assignments\//))
-    {
-      instance.AddAssignmentsMenu(instance);
+    var pages = ["assignments","weaponunlocks","awards","weapons"];
+    for (var i=0;i<4;i++)
+    { 
+      if(url.match('/\/' + pages[i] + '\//'))
+      {  
+        instance.AddDLCMenu(instance,pages[i]);
+        break;
+      }
     }
   },
   
-  AddAssignmentsMenu : function(instance){
+  AddDLCMenu : function(instance,page){
     if(!$(".abd-menu").length)
     {
       if(instance.AreAllDLCsSelected(instance))
       {
-        var assignmentscode = '<ul class="abd-menu"><li style="width: 0.8%" class="abd abd-all active"><a>' + instance.t("all") + '</a></li><li class="abd abd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li>';
+        var dlcmenucode = '<ul class="abd-menu"><li style="width: 0.8%" class="abd abd-all active"><a>' + instance.t("all") + '</a></li><li class="abd abd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li>';
       }
       else
       {
-         var assignmentscode = '<ul class="abd-menu"><li style="width: 0.8%" class="abd abd-all active"><a>' + instance.t("all") + '</a></li><li class="abd abd-base"><a>' + instance.t("basegame") + '</a></li>';   
+         var dlcmenucode = '<ul class="abd-menu"><li style="width: 0.8%" class="abd abd-all active"><a>' + instance.t("all") + '</a></li><li class="abd abd-base"><a>' + instance.t("basegame") + '</a></li>';   
       }
       if (instance.storage("option.xp1")){
         if(instance.AreAllDLCsSelected(instance))
         {
-          assignmentscode += '<li class="abd abd-xp1" style="width: 1.2%"><a>China Rising</a></li>';
+          dlcmenucode += '<li class="abd abd-xp1" style="width: 1.2%"><a>China Rising</a></li>';
         }
         else
         {
-          assignmentscode += '<li class="abd abd-xp1"><a>China Rising</a></li>';
+          dlcmenucode += '<li class="abd abd-xp1"><a>China Rising</a></li>';
         }
       }
       if (instance.storage("option.xp0")){
         if(instance.AreAllDLCsSelected(instance))
         {
-          assignmentscode += '<li class="abd abd-xp0" style="width: 1.4%"><a>Second Assault</a></li>';
+          dlcmenucode += '<li class="abd abd-xp0" style="width: 1.4%"><a>Second Assault</a></li>';
         }
         else
         {
-          assignmentscode += '<li class="abd abd-xp0""><a>Second Assault</a></li>';
+          dlcmenucode += '<li class="abd abd-xp0""><a>Second Assault</a></li>';
         }
       }
       if (instance.storage("option.xp2")){
         if(instance.AreAllDLCsSelected(instance))
         {    
-          assignmentscode += '<li class="abd abd-xp2" style="width: 1.2%"><a>Naval Strike</a></li>';
+          dlcmenucode += '<li class="abd abd-xp2" style="width: 1.2%"><a>Naval Strike</a></li>';
         }
         else
         {
-          assignmentscode += '<li class="abd abd-xp2"><a>Naval Strike</a></li>';
+          dlcmenucode += '<li class="abd abd-xp2"><a>Naval Strike</a></li>';
         }
       }
       if (instance.storage("option.xp3")){
         if(instance.AreAllDLCsSelected(instance))
         {
-          assignmentscode += '<li class="abd abd-xp3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li>';
+          dlcmenucode += '<li class="abd abd-xp3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li>';
         }
         else
         {
-          assignmentscode += '<li class="abd abd-xp3"><a>Dragon\'s Teeth</a></li>';
+          dlcmenucode += '<li class="abd abd-xp3"><a>Dragon\'s Teeth</a></li>';
         }
       }
       if (instance.storage("option.xp4")){
         if(instance.AreAllDLCsSelected(instance))
         {    
-          assignmentscode += '<li class="abd abd-xp4" style="width: 1.2%"><a>Final Stand</a></li>';
+          dlcmenucode += '<li class="abd abd-xp4" style="width: 1.2%"><a>Final Stand</a></li>';
         }
         else
         {
-          assignmentscode += '<li class="abd abd-xp4"><a>Final Stand</a></li>';
+          dlcmenucode += '<li class="abd abd-xp4"><a>Final Stand</a></li>';
         }
       }
-      assignmentscode += '</ul>';
-      $(".submenu.margin-top").append(assignmentscode);
+      dlcmenucode += '</ul>';
+      $(".submenu.margin-top").append(dlcmenucode);
+    }
+    if(page == "assignments")
+    {
+      var parentelement = "assignments-list";
+    }
+    if(page == "weaponunlocks")
+    {
+      var parentelement = "weapon-stats-list";
     }
     $(".abd").click(function() {
       $(".abd.active").removeClass("active");
+      $(this).addClass("active");
       if($(this).hasClass("abd-all"))
       {
-        $(this).addClass("active");
-        $(".assignments-list > li").show();
-        $("#assignments-statistics > .span8 >.box.stat-box:last-child").show();
+        $("." + parentelement + "> li").show();
       }
       if($(this).hasClass("abd-base"))
       {
-        $(this).addClass("active");
-        $(".assignments-list > li").hide();
-        $(".assignments-list > li > .dependencies").each(function() { 
-          if(!$(this).children(".dependeny-icon.xp-icon").length)
-          {
-            $(this).parent().show();
-          }
-        });
-        $("#assignments-statistics > .span8 >.box.stat-box:last-child").show();
+        $("." + parentelement + " > li").hide();
+        $("." + parentelement + " > li").has(":not(.xp-icon)").show();
       }
       for(var xpclicked=0;xpclicked<5;xpclicked++)
       {
         if($(this).hasClass("abd-xp" + xpclicked))
         {
-          $(this).addClass("active");      
-          $(".assignments-list > li").hide();
-          $(".assignments-list > li > .dependencies > .dependeny-icon.xp-icon[data-xpack='xp" + xpclicked + "']").parent().parent().show();
-          $("#assignments-statistics > .span8 >.box.stat-box:last-child").hide();
+          $("." + parentelement + " > li").hide();
+          $("." + parentelement + " > li").has(".xp-icon[data-xpack='xp" + xpclicked + "']").show();
         }
       }                                     
     });

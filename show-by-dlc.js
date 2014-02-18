@@ -1,11 +1,11 @@
 /**
-* Assignments by DLC:
-*  - buttons for showing only assignments from selected DLC/base game
+* Show by DLC:
+*  - buttons for showing only assignments/weapons/awards/weapon unlocks from selected DLC/base game
 *
 * @author dapil
-* @version 1.1
-* @url http://dapil.github.io/assignments-by-dlc-bblog/assignments-by-dlc.js
-* @last-edit 11. 2. 2014 22:06
+* @version 2.0
+* @url http://dapil.github.io/show-by-dlc-bblog/show-by-dlc.js
+* @last-edit 18. 2. 2014 20:28
 */
 
 BBLog.handle("add.plugin", {

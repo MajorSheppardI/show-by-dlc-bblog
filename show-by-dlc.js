@@ -41,6 +41,7 @@ BBLog.handle("add.plugin", {
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
     { 
+      console.log(i)
       if(url.indexOf("/" + pages[i] + "/"))
       {  
         instance.AddDLCMenu(instance,pages[i]);
@@ -54,6 +55,7 @@ BBLog.handle("add.plugin", {
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
     { 
+      console.log(i)
       if(url.indexOf("/" + pages[i] + "/"))
       {  
         instance.AddDLCMenu(instance,pages[i]);

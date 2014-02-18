@@ -144,9 +144,9 @@ BBLog.handle("add.plugin", {
     if(page == "weapons")
     {
       var parentelement = "weapons-stat-tbl tbody";
-      $("#bn-show-all").click();
     }    
     $(".abd").click(function() {
+      $("#bn-show-all").click();
       $(".abd.active").removeClass("active");
       $(this).addClass("active");
       if($(this).hasClass("abd-all"))

@@ -141,24 +141,28 @@ BBLog.handle("add.plugin", {
     {
       var parentelement = "awards-list";
     }    
+    if(page == "weapons")
+    {
+      var parentelement = "weapons-stat-tbl tbody";
+    }    
     $(".abd").click(function() {
       $(".abd.active").removeClass("active");
       $(this).addClass("active");
       if($(this).hasClass("abd-all"))
       {
-        $("." + parentelement + "> li").show();
+        $("." + parentelement + "> *").show();
       }
       if($(this).hasClass("abd-base"))
       {
-        $("." + parentelement + " > li").hide();
-        $("." + parentelement + " > li").not(":has(.xp-icon)").show();
+        $("." + parentelement + " > *").hide();
+        $("." + parentelement + " > *").not(":has(.xp-icon)").show();
       }
       for(var xpclicked=0;xpclicked<5;xpclicked++)
       {
         if($(this).hasClass("abd-xp" + xpclicked))
         {
-          $("." + parentelement + " > li").hide();
-          $("." + parentelement + " > li").has(".xp-icon[data-xpack='xp" + xpclicked + "']").show();
+          $("." + parentelement + " > *").hide();
+          $("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + xpclicked + "']").show();
         }
       }                                     
     });

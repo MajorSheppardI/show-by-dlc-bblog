@@ -44,7 +44,7 @@ BBLog.handle("add.plugin", {
     for (var i=0;i<4;i++)
     { 
       console.log(i)
-      if(url.indexOf("/" + pages[i] + "/"))
+      if(url.indexOf("/" + pages[i] + "/") != -1)
       {  
         instance.AddDLCMenu(instance,pages[i]);
         break;

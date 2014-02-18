@@ -151,7 +151,7 @@ BBLog.handle("add.plugin", {
       if($(this).hasClass("abd-base"))
       {
         $("." + parentelement + " > li").hide();
-        $("." + parentelement + " > li").has(":not(.xp-icon)").show();
+        $("." + parentelement + " > li").not(":has(.xp-icon)").show();
       }
       for(var xpclicked=0;xpclicked<5;xpclicked++)
       {

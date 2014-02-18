@@ -61,8 +61,9 @@ BBLog.handle("add.plugin", {
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
     { 
-      console.log(i)
-      if(url.indexOf("/" + pages[i] + "/"))
+      console.log(url)
+      console.log(pages[i])
+      if(url.indexOf("/" + pages[i] + "/") != -1)
       {  
         instance.AddDLCMenu(instance,pages[i]);
         return;

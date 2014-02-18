@@ -37,6 +37,8 @@ BBLog.handle("add.plugin", {
   },
     
   init : function(instance){
+    if(!$(".abd-menu").length)
+    {
     var url = window.location.href;
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
@@ -47,10 +49,13 @@ BBLog.handle("add.plugin", {
         instance.AddDLCMenu(instance,pages[i]);
         break;
       }
+    }
     }
   },
 
   domchange : function(instance){
+    if(!$(".abd-menu").length)
+    {
     var url = window.location.href;
     var pages = ["assignments","weaponunlocks","awards","weapons"];
     for (var i=0;i<4;i++)
@@ -62,11 +67,10 @@ BBLog.handle("add.plugin", {
         break;
       }
     }
+    }
   },
   
   AddDLCMenu : function(instance,page){
-    if(!$(".abd-menu").length)
-    {
       if(instance.AreAllDLCsSelected(instance))
       {
         var dlcmenucode = '<ul class="abd-menu"><li style="width: 0.8%" class="abd abd-all active"><a>' + instance.t("all") + '</a></li><li class="abd abd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li>';
@@ -127,7 +131,6 @@ BBLog.handle("add.plugin", {
       }
       dlcmenucode += '</ul>';
       $(".submenu.margin-top").append(dlcmenucode);
-    }
     if(page == "assignments")
     {
       var parentelement = "assignments-list";

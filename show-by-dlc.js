@@ -5,7 +5,7 @@
 * @author dapil
 * @version 2.0
 * @url http://dapil.github.io/show-by-dlc-bblog/show-by-dlc.js
-* @last-edit 18. 2. 2014 20:28
+* @last-edit 19. 2. 2014 23:15
 */
 
 BBLog.handle("add.plugin", {

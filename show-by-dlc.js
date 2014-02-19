@@ -102,7 +102,7 @@ BBLog.handle("add.plugin", {
           $("." + parentelement + " > *").hide();
           $("." + parentelement + " > *").not(":has(.xp-icon)").show();
         }
-        if($(this).data("xpmenu"))
+        if($(this).data("xpmenu") != undefined)
         {
           $("." + parentelement + " > *").hide();
           $("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + $(this).data("xpmenu") + "']").show();

@@ -5,7 +5,7 @@
 * @author dapil
 * @version 2.0
 * @url http://dapil.github.io/show-by-dlc-bblog/show-by-dlc.js
-* @last-edit 18. 2. 2014 20:28
+* @last-edit 19. 2. 2014 23:15
 */
 
 BBLog.handle("add.plugin", {
@@ -37,15 +37,16 @@ BBLog.handle("add.plugin", {
   },
     
   init : function(instance){
-    if(!$(".abd-menu").length)
+    if(!$(".sbd-menu").length)
     {
     var url = window.location.href;
-    var pages = ["assignments","weaponunlocks","awards","weapons"];
+    var pages = ["/assignments/","/weaponunlocks/","/awards/","/weapons/"];
+    var parentelements = ["assignments-list","weapon-stats-list","awards-list","weapons-stat-tbl tbody"];
     for (var i=0;i<4;i++)
     { 
-      if(url.indexOf("/" + pages[i] + "/") != -1)
+      if(url.indexOf(pages[i]) != -1)
       {  
-        instance.AddDLCMenu(instance,pages[i]);
+        instance.AddDLCMenu(instance,parentelements[i]);
         return;
       }
     }
@@ -53,131 +54,59 @@ BBLog.handle("add.plugin", {
   },
 
   domchange : function(instance){
-    if(!$(".abd-menu").length)
+    if(!$(".sbd-menu").length)
     {
     var url = window.location.href;
-    var pages = ["assignments","weaponunlocks","awards","weapons"];
+    var pages = ["/assignments/","/weaponunlocks/","/awards/","/weapons/"];
+    var parentelements = ["assignments-list","weapon-stats-list","awards-list","weapons-stat-tbl tbody"];
     for (var i=0;i<4;i++)
     { 
-      if(url.indexOf("/" + pages[i] + "/") != -1)
+      if(url.indexOf(pages[i]) != -1)
       {  
-        instance.AddDLCMenu(instance,pages[i]);
+        instance.AddDLCMenu(instance,parentelements[i]);
         return;
       }
     }
     }
   },
   
-  AddDLCMenu : function(instance,page){
-      if(instance.AreAllDLCsSelected(instance))
+  AddDLCMenu : function(instance,parentelement){
+      if(instance.storage("option.xp0") && instance.storage("option.xp1") && instance.storage("option.xp2") && instance.storage("option.xp3") && instance.storage("option.xp4"))
       {
-        var dlcmenucode = '<ul class="abd-menu"><li style="width: 0.8%" class="abd abd-all active"><a>' + instance.t("all") + '</a></li><li class="abd abd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li>';
+        var dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li><li class="sbd" data-xpmenu="1" style="width: 1.2%"><a>China Rising</a></li><li class="sbd" data-xpmenu="0" style="width: 1.4%"><a>Second Assault</a></li><li class="sbd" data-xpmenu="2" style="width: 1.2%"><a>Naval Strike</a></li><li class="sbd" data-xpmenu="3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li><li class="sbd" data-xpmenu="4" style="width: 1.2%"><a>Final Stand</a></li></ul>';
       }
       else
       {
-         var dlcmenucode = '<ul class="abd-menu"><li style="width: 0.8%" class="abd abd-all active"><a>' + instance.t("all") + '</a></li><li class="abd abd-base"><a>' + instance.t("basegame") + '</a></li>';   
+        var dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base"><a>' + instance.t("basegame") + '</a></li>';
+        for(var xpmenu=0;xpmenu<5;xpmenu++)
+        {
+          if (instance.storage("option.xp" + xpmenu))
+          {
+            dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenu + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
+          }
+        }
+        dlcmenucode += '</ul>';
       }
-      if (instance.storage("option.xp1")){
-        if(instance.AreAllDLCsSelected(instance))
-        {
-          dlcmenucode += '<li class="abd abd-xp1" style="width: 1.2%"><a>China Rising</a></li>';
-        }
-        else
-        {
-          dlcmenucode += '<li class="abd abd-xp1"><a>China Rising</a></li>';
-        }
-      }
-      if (instance.storage("option.xp0")){
-        if(instance.AreAllDLCsSelected(instance))
-        {
-          dlcmenucode += '<li class="abd abd-xp0" style="width: 1.4%"><a>Second Assault</a></li>';
-        }
-        else
-        {
-          dlcmenucode += '<li class="abd abd-xp0""><a>Second Assault</a></li>';
-        }
-      }
-      if (instance.storage("option.xp2")){
-        if(instance.AreAllDLCsSelected(instance))
-        {    
-          dlcmenucode += '<li class="abd abd-xp2" style="width: 1.2%"><a>Naval Strike</a></li>';
-        }
-        else
-        {
-          dlcmenucode += '<li class="abd abd-xp2"><a>Naval Strike</a></li>';
-        }
-      }
-      if (instance.storage("option.xp3")){
-        if(instance.AreAllDLCsSelected(instance))
-        {
-          dlcmenucode += '<li class="abd abd-xp3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li>';
-        }
-        else
-        {
-          dlcmenucode += '<li class="abd abd-xp3"><a>Dragon\'s Teeth</a></li>';
-        }
-      }
-      if (instance.storage("option.xp4")){
-        if(instance.AreAllDLCsSelected(instance))
-        {    
-          dlcmenucode += '<li class="abd abd-xp4" style="width: 1.2%"><a>Final Stand</a></li>';
-        }
-        else
-        {
-          dlcmenucode += '<li class="abd abd-xp4"><a>Final Stand</a></li>';
-        }
-      }
-      dlcmenucode += '</ul>';
       $(".submenu.margin-top").append(dlcmenucode);
-    if(page == "assignments")
-    {
-      var parentelement = "assignments-list";
-    }
-    if(page == "weaponunlocks")
-    {
-      var parentelement = "weapon-stats-list";
-    }
-    if(page == "awards")
-    {
-      var parentelement = "awards-list";
-    }    
-    if(page == "weapons")
-    {
-      var parentelement = "weapons-stat-tbl tbody";
-    }    
-    $(".abd").click(function() {
-      $("#bn-show-all").click();
-      $(".abd.active").removeClass("active");
-      $(this).addClass("active");
-      if($(this).hasClass("abd-all"))
-      {
-        $("." + parentelement + "> *").show();
-      }
-      if($(this).hasClass("abd-base"))
-      {
-        $("." + parentelement + " > *").hide();
-        $("." + parentelement + " > *").not(":has(.xp-icon)").show();
-      }
-      for(var xpclicked=0;xpclicked<5;xpclicked++)
-      {
-        if($(this).hasClass("abd-xp" + xpclicked))
+     
+      $(".sbd").click(function() {
+        $("#bn-show-all").click();
+        $(".sbd.active").removeClass("active");
+        $(this).addClass("active");
+        if($(this).hasClass("sbd-all"))
+        {
+          $("." + parentelement + "> *").show();
+        }
+        if($(this).hasClass("sbd-base"))
         {
           $("." + parentelement + " > *").hide();
-          $("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + xpclicked + "']").show();
+          $("." + parentelement + " > *").not(":has(.xp-icon)").show();
         }
-      }                                     
-    });
-    
-  },
-  
-  AreAllDLCsSelected : function(instance){
-    if(instance.storage("option.xp0") && instance.storage("option.xp1") && instance.storage("option.xp2") && instance.storage("option.xp3") && instance.storage("option.xp4"))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+        if($(this).data("xpmenu") != undefined)
+        {
+          $("." + parentelement + " > *").hide();
+          $("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + $(this).data("xpmenu") + "']").show();
+        }
+      });
   },
 });

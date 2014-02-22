@@ -14,10 +14,10 @@ BBLog.handle("add.plugin", {
   
   configFlags : [
     ["option.xp1", 1], //China Rising
-    ["option.xp0", 1], //Second Assault
-    ["option.xp2", 0], //Naval Strike
-    ["option.xp3", 0], //Dragon's Teeth
-    ["option.xp4", 0], //Final Stand
+    ["option.xp2", 1], //Second Assault
+    ["option.xp3", 0], //Naval Strike
+    ["option.xp4", 0], //Dragon's Teeth
+    ["option.xp5", 0], //Final Stand
   ],
     
   translations : {

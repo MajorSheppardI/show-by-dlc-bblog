@@ -56,6 +56,7 @@ BBLog.handle("add.plugin",
             var url = window.location.href;
             var pages = ["/assignments/", "/weaponunlocks/", "/awards/", "/weapons/"];
             var parentelements = ["assignments-list", "weapon-stats-list", "awards-list", "weapons-stat-tbl tbody"];
+            var xpmenuids = [1,0,2,3,4];
             for (var i = 0; i < 4; i++)
             {
                 if (url.indexOf(pages[i]) != -1)
@@ -72,7 +73,8 @@ BBLog.handle("add.plugin",
                         {
                             if (instance.storage("option.xp" + xpmenu))
                             {
-                                dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenu + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
+                                var xpmenuid = xpmenuids[xpmenu - 1]
+                                dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenuid + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
                             }
                         }
                         dlcmenucode += '</ul>';

@@ -23,10 +23,10 @@ BBLog.handle("add.plugin", {
   translations : {
      "en" : {
       "option.xp1" : "China Rising",
-      "option.xp0" : "Second Assault",
-      "option.xp2" : "Naval Strike",
-      "option.xp3" : "Dragon's Teeth",
-      "option.xp4" : "Final Stand",
+      "option.xp2" : "Second Assault",
+      "option.xp3" : "Naval Strike",
+      "option.xp4" : "Dragon's Teeth",
+      "option.xp5" : "Final Stand",
       "all" : "All",
       "basegame" : "Base game",
      },
@@ -71,14 +71,14 @@ BBLog.handle("add.plugin", {
   },
   
   AddDLCMenu : function(instance,parentelement){
-      if(instance.storage("option.xp0") && instance.storage("option.xp1") && instance.storage("option.xp2") && instance.storage("option.xp3") && instance.storage("option.xp4"))
+      if(instance.storage("option.xp1") && instance.storage("option.xp2") && instance.storage("option.xp3") && instance.storage("option.xp4") && instance.storage("option.xp5"))
       {
         var dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li><li class="sbd" data-xpmenu="1" style="width: 1.2%"><a>China Rising</a></li><li class="sbd" data-xpmenu="0" style="width: 1.4%"><a>Second Assault</a></li><li class="sbd" data-xpmenu="2" style="width: 1.2%"><a>Naval Strike</a></li><li class="sbd" data-xpmenu="3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li><li class="sbd" data-xpmenu="4" style="width: 1.2%"><a>Final Stand</a></li></ul>';
       }
       else
       {
         var dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base"><a>' + instance.t("basegame") + '</a></li>';
-        for(var xpmenu=0;xpmenu<5;xpmenu++)
+        for(var xpmenu=1;xpmenu<6;xpmenu++)
         {
           if (instance.storage("option.xp" + xpmenu))
           {

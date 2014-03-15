@@ -12,23 +12,15 @@ BBLog.handle("add.plugin",
     id: "show-by-dlc",
     name: "Show by DLC",
 
-    configFlags: [
-        ["option.xp1", 1], //China Rising
-        ["option.xp2", 1], //Second Assault
-        ["option.xp3", 0], //Naval Strike
-        ["option.xp4", 0], //Dragon's Teeth
-        ["option.xp5", 0], //Final Stand
-    ],
-
     translations:
     {
         "en":
         {
-            "option.xp1": "China Rising",
-            "option.xp2": "Second Assault",
-            "option.xp3": "Naval Strike",
-            "option.xp4": "Dragon's Teeth",
-            "option.xp5": "Final Stand",
+            "xp1": "China Rising",
+            "xp2": "Second Assault",
+            "xp3": "Naval Strike",
+            "xp4": "Dragon's Teeth",
+            "xp5": "Final Stand",
             "all": "All",
             "basegame": "Base game",
         },
@@ -81,7 +73,7 @@ BBLog.handle("add.plugin",
                         {
                             if (dlcswithitems[xpmenu])
                             {
-                                dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenuids[xpmenu] + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
+                                dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenuids[xpmenu] + '"><a>' + instance.t("xp" + xpmenu) + '</a></li>';
                             }
                         }
                         dlcmenucode += '</ul>';

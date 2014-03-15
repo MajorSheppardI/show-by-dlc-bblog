@@ -55,6 +55,7 @@ BBLog.handle("add.plugin",
                 {
                     var parentelement = parentelements[activepage];
                     var dlcswithitems = [false,false,false,false,false];
+                    console.log(parentelement)
                     for (var activedlc = 0; activedlc < 5; activedlc++)
                     {
                         if($("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + xpmenuids[activedlc] + "']").length)

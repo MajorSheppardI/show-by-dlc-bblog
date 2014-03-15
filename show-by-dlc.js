@@ -16,11 +16,11 @@ BBLog.handle("add.plugin",
     {
         "en":
         {
-            "xp1": "China Rising",
-            "xp2": "Second Assault",
-            "xp3": "Naval Strike",
-            "xp4": "Dragon's Teeth",
-            "xp5": "Final Stand",
+            "xp0": "China Rising",
+            "xp1": "Second Assault",
+            "xp2": "Naval Strike",
+            "xp3": "Dragon's Teeth",
+            "xp4": "Final Stand",
             "all": "All",
             "basegame": "Base game",
         },

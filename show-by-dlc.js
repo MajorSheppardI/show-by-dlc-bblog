@@ -57,24 +57,31 @@ BBLog.handle("add.plugin",
             var pages = ["/assignments/", "/weaponunlocks/", "/awards/", "/weapons/"];
             var parentelements = ["assignments-list", "weapon-stats-list", "awards-list", "weapons-stat-tbl tbody"];
             var xpmenuids = [1,0,2,3,4];
-            for (var i = 0; i < 4; i++)
+            for (var activepage = 0; activepage < 4; activepage++)
             {
-                if (url.indexOf(pages[i]) != -1)
+                if (url.indexOf(pages[activepage]) != -1)
                 {
-                    var parentelement = parentelements[i];
-                    if (instance.storage("option.xp1") && instance.storage("option.xp2") && instance.storage("option.xp3") && instance.storage("option.xp4") && instance.storage("option.xp5"))
+                    var parentelement = parentelements[activepage];
+                    var dlcswithitems = [false,false,false,false,false];
+                    for (var activedlc = 0; activedlc < 5; activedlc++)
+                    {
+                        if($("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + xpmenuids[activedlc] + "']").length)
+                        {
+                            dlcswithitems[activedlc] = true;
+                        }
+                    }
+                    if (dlcswithitems[0] && dlcswithitems[1] && dlcswithitems[2] && dlcswithitems[3] && dlcswithitems[4])
                     {
                         var dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li><li class="sbd" data-xpmenu="1" style="width: 1.2%"><a>China Rising</a></li><li class="sbd" data-xpmenu="0" style="width: 1.4%"><a>Second Assault</a></li><li class="sbd" data-xpmenu="2" style="width: 1.2%"><a>Naval Strike</a></li><li class="sbd" data-xpmenu="3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li><li class="sbd" data-xpmenu="4" style="width: 1.2%"><a>Final Stand</a></li></ul>';
                     }
                     else
                     {
                         var dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base"><a>' + instance.t("basegame") + '</a></li>';
-                        for (var xpmenu = 1; xpmenu < 6; xpmenu++)
+                        for (var xpmenu = 0; xpmenu < 5; xpmenu++)
                         {
-                            if (instance.storage("option.xp" + xpmenu))
+                            if (dlcswithitems[xpmenu])
                             {
-                                var xpmenuid = xpmenuids[xpmenu - 1]
-                                dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenuid + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
+                                dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenuids[xpmenu] + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
                             }
                         }
                         dlcmenucode += '</ul>';

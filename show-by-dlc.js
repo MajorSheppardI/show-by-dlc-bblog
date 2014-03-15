@@ -58,7 +58,7 @@ BBLog.handle("add.plugin",
                     console.log(parentelement)
                     for (var activedlc = 0; activedlc < 5; activedlc++)
                     {
-                        if($("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + xpmenuids[activedlc] + "']").length)
+                        if($("." + parentelement + " > *").has(".xp-icon[data-xpack='xp" + xpmenuids[activedlc] + "']").length != -1)
                         {
                             dlcswithitems[activedlc] = true;
                         }

@@ -3,9 +3,9 @@
  *  - buttons for showing only assignments/weapons/awards/weapon unlocks from selected DLC/base game
  *
  * @author dapil
- * @version 2.0
+ * @version 2.0.1
  * @url http://dapil.github.io/show-by-dlc-bblog/show-by-dlc.js
- * @last-edit 19. 2. 2014 23:15
+ * @last-edit 25. 3. 2014 18:33
  */
 BBLog.handle("add.plugin",
 {
@@ -34,8 +34,18 @@ BBLog.handle("add.plugin",
         },
         "cs":
         {
-            "all": "VĹˇechny",
-            "basegame": "ZĂˇkladnĂ­ hra",
+            "all": "Všechny",
+            "basegame": "Základní­ hra",
+        },
+        "pt":
+        {
+			"all": "Tudo",
+            "basegame": "Jogo Base",
+        },
+        "de":
+        {
+			"all": "Alle",
+            "basegame": "Basisspiel",
         },
     },
 

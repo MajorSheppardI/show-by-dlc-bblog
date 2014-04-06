@@ -78,17 +78,17 @@ BBLog.handle("add.plugin",
                     var dlcmenucode;
                     if (instance.storage("option.xp1") && instance.storage("option.xp2") && instance.storage("option.xp3") && instance.storage("option.xp4") && instance.storage("option.xp5"))
                     {
-                        dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li><li class="sbd" data-xpmenu="1" style="width: 1.2%"><a>China Rising</a></li><li class="sbd" data-xpmenu="0" style="width: 1.4%"><a>Second Assault</a></li><li class="sbd" data-xpmenu="2" style="width: 1.2%"><a>Naval Strike</a></li><li class="sbd" data-xpmenu="3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li><li class="sbd" data-xpmenu="4" style="width: 1.2%"><a>Final Stand</a></li></ul>';
+                        dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-dlc sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-dlc sbd-base" style="width: 1.2%"><a>' + instance.t("basegame") + '</a></li><li class="sbd sbd-dlc" data-xpmenu="1" style="width: 1.2%"><a>China Rising</a></li><li class="sbd sbd-dlc" data-xpmenu="0" style="width: 1.4%"><a>Second Assault</a></li><li class="sbd sbd-dlc" data-xpmenu="2" style="width: 1.2%"><a>Naval Strike</a></li><li class="sbd sbd-dlc" data-xpmenu="3" style="width: 1.3%"><a>Dragon\'s Teeth</a></li><li class="sbd sbd-dlc" data-xpmenu="4" style="width: 1.2%"><a>Final Stand</a></li></ul>';
                     }
                     else
                     {
-                        dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-base"><a>' + instance.t("basegame") + '</a></li>';
+                        dlcmenucode = '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-dlc sbd-all active"><a>' + instance.t("all") + '</a></li><li class="sbd sbd-dlc sbd-base"><a>' + instance.t("basegame") + '</a></li>';
                         for (var xpmenu = 1; xpmenu < 6; xpmenu++)
                         {
                             if (instance.storage("option.xp" + xpmenu))
                             {
                                 var xpmenuid = xpmenuids[xpmenu - 1]
-                                dlcmenucode += '<li class="sbd" data-xpmenu="' + xpmenuid + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
+                                dlcmenucode += '<li class="sbd sbd-dlc" data-xpmenu="' + xpmenuid + '"><a>' + instance.t("option.xp" + xpmenu) + '</a></li>';
                             }
                         }
                         dlcmenucode += '</ul>';
@@ -104,7 +104,7 @@ BBLog.handle("add.plugin",
         $(".sbd").click(function ()
         {
             $("#bn-show-all").click();
-            $(".sbd.active, .sbd-hb.active").removeClass("active");
+            $(".sbd-dlc.active, .sbd-hb.active").removeClass("active");
             if (!$(this).hasClass("sbd-hb"))
             {
             $(this).addClass("active");
@@ -125,10 +125,10 @@ BBLog.handle("add.plugin",
             }
             if(instance.storage("option.hidebuttons"))
             {
+              $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
               if($(this).hasClass("sbd-uncompleted") || activehidebutton == 1)
               {
                 $(".sbd-uncompleted").addClass("active");
-                $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
                 $("." + parentelement + "> *").not(".completed").addClass("sbd-hb-hidden").hide();
                 $("." + parentelement + "> *").not(".locked").addClass("sbd-hb-hidden").hide();
                 $("." + parentelement + "> *").not(":has(.award-medal.nottaken)").addClass("sbd-hb-hidden").hide();
@@ -137,7 +137,6 @@ BBLog.handle("add.plugin",
               if($(this).hasClass("sbd-completed") || activehidebutton == 2)
               {
                 $(".sbd-completed").addClass("active");
-                $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
                 $("." + parentelement + "> .completed").addClass("sbd-hb-hidden").hide();
                 $("." + parentelement + "> .locked").addClass("sbd-hb-hidden").hide();
                 $("." + parentelement + "> *").has(".award-medal.nottaken").addClass("sbd-hb-hidden").hide();
@@ -146,7 +145,6 @@ BBLog.handle("add.plugin",
               if($(this).hasClass("sbd-hb-all"))
               {
                 $(this).addClass("active");
-                $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
                 activehidebutton = 0;
               }
             }

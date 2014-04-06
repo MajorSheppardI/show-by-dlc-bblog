@@ -95,18 +95,20 @@ BBLog.handle("add.plugin",
                     }
                     if(instance.storage("option.hidebuttons"))
                     {
-                        dlcmenucode += '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-hb-all active"><a>All</a></li><li class="sbd sbd-uncompleted"><a>Uncompleted/locked</a></li><li class="sbd sbd-completed"><a>Completed/unlocked</a></li></ul>';
+                        dlcmenucode += '<ul class="sbd-hb-menu"><li style="width: 0.8%" class="sbd sbd-hb sbd-hb-all active"><a>All</a></li><li class="sbd sbd-hb sbd-uncompleted"><a>Uncompleted/locked</a></li><li class="sbd sbd-hb sbd-completed"><a>Completed/unlocked</a></li></ul>';
                     }
                     $(".submenu.margin-top").append(dlcmenucode);
                 }
             }
-        }
+        }       
         $(".sbd").click(function ()
         {
             $("#bn-show-all").click();
             $(".sbd.active").removeClass("active");
+            if (!$(this).hasClass("sbd-hb"))
+            {
             $(this).addClass("active");
-            
+            }            
             if ($(this).hasClass("sbd-all"))
             {
                 $("." + parentelement + "> *").show();
@@ -125,23 +127,26 @@ BBLog.handle("add.plugin",
             {
               if($(this).hasClass("sbd-uncompleted") || activehidebutton == 1)
               {
-                $(".sbd-hidebutton-hidden").show().removeClass("sbd-hidebutton-hidden");
-                $("." + parentelement + "> *").not(".completed").addClass("sbd-hidebutton-hidden").hide();
-                $("." + parentelement + "> *").not(".locked").addClass("sbd-hidebutton-hidden").hide();
-                $("." + parentelement + "> *").not(":has(.award-medal.nottaken)").addClass("sbd-hidebutton-hidden").hide();
+                $(".sbd-uncompleted").addClass("active");
+                $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
+                $("." + parentelement + "> *").not(".completed").addClass("sbd-hb-hidden").hide();
+                $("." + parentelement + "> *").not(".locked").addClass("sbd-hb-hidden").hide();
+                $("." + parentelement + "> *").not(":has(.award-medal.nottaken)").addClass("sbd-hb-hidden").hide();
                 activehidebutton = 1
               }
               if($(this).hasClass("sbd-completed") || activehidebutton == 2)
               {
-                $(".sbd-hidebutton-hidden").show().removeClass("sbd-hidebutton-hidden");
-                $("." + parentelement + "> .completed").addClass("sbd-hidebutton-hidden").hide();
-                $("." + parentelement + "> .locked").addClass("sbd-hidebutton-hidden").hide();
-                $("." + parentelement + "> *").has(".award-medal.nottaken").addClass("sbd-hidebutton-hidden").hide();
+                $(".sbd-completed").addClass("active");
+                $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
+                $("." + parentelement + "> .completed").addClass("sbd-hb-hidden").hide();
+                $("." + parentelement + "> .locked").addClass("sbd-hb-hidden").hide();
+                $("." + parentelement + "> *").has(".award-medal.nottaken").addClass("sbd-hb-hidden").hide();
                 activehidebutton = 2;
               }
               if($(this).hasClass("sbd-hb-all"))
               {
-                $(".sbd-hidebutton-hidden").show().removeClass("sbd-hidebutton-hidden");
+                $(this).addClass("active");
+                $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
                 activehidebutton = 0;
               }
             }

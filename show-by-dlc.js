@@ -41,12 +41,12 @@ BBLog.handle("add.plugin",
         },
         "pt":
         {
-			      "all": "Tudo",
+            "all": "Tudo",
             "basegame": "Jogo Base",
         },
         "de":
         {
-			      "all": "Alle",
+            "all": "Alle",
             "basegame": "Basisspiel",
         },
     },
@@ -101,18 +101,6 @@ BBLog.handle("add.plugin",
                 }
             }
         }
-        if(instance.storage("option.hidecompleted"))
-        {
-        $("." + parentelement + "> .completed").hide();
-        $("." + parentelement + "> .locked").hide();
-        $("." + parentelement + "> *").has(".award-medal.nottaken").hide();
-        }
-        if(instance.storage("option.hideuncompleted"))
-        {
-        $("." + parentelement + "> *").not(".completed").hide();
-        $("." + parentelement + "> *").not(".locked").hide();
-        $("." + parentelement + "> *").not(":has(.award-medal.nottaken)").hide();
-        }        
         $(".sbd").click(function ()
         {
             $("#bn-show-all").click();

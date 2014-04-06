@@ -132,7 +132,7 @@ BBLog.handle("add.plugin",
                 $("." + parentelement + "> *").not(".completed").addClass("sbd-hb-hidden").hide();
                 $("." + parentelement + "> *").not(".locked").addClass("sbd-hb-hidden").hide();
                 $("." + parentelement + "> *").not(":has(.award-medal.nottaken)").addClass("sbd-hb-hidden").hide();
-                activehidebutton = 1
+                activehidebutton = 1;
               }
               if($(this).hasClass("sbd-completed") || activehidebutton == 2)
               {

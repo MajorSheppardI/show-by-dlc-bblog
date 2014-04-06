@@ -145,7 +145,7 @@ BBLog.handle("add.plugin",
               }
               if($(this).hasClass("sbd-hb-all"))
               {
-                $(this).addClass("active");
+                $(".sbd-hb-all").addClass("active");
                 activehidebutton = 0;
               }
             }

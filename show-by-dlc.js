@@ -104,10 +104,10 @@ BBLog.handle("add.plugin",
         $(".sbd").click(function ()
         {
             $("#bn-show-all").click();
-            $(".sbd-dlc.active, .sbd-hb.active").removeClass("active");
             if (!$(this).hasClass("sbd-hb"))
             {
-            $(this).addClass("active");
+                $(".sbd-dlc.active").removeClass("active");
+                $(this).addClass("active");
             }            
             if ($(this).hasClass("sbd-all"))
             {
@@ -125,6 +125,7 @@ BBLog.handle("add.plugin",
             }
             if(instance.storage("option.hidebuttons"))
             {
+              $(".sbd-hb.active").removeClass("active");
               $(".sbd-hb-hidden").show().removeClass("sbd-hb-hidden");
               if($(this).hasClass("sbd-uncompleted") || activehidebutton == 1)
               {

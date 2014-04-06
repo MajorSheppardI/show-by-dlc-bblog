@@ -63,13 +63,13 @@ BBLog.handle("add.plugin",
 
     AddDLCMenu: function (instance)
     {
+        var activehidebutton;
         if (!$(".sbd-menu").length)
         {
             var url = window.location.href;
             var pages = ["/assignments/", "/weaponunlocks/", "/awards/", "/weapons/"];
             var parentelements = ["assignments-list", "weapon-stats-list", "awards-list", "weapons-stat-tbl tbody"];
             var xpmenuids = [1,0,2,3,4];
-            var activehidebutton;
             for (var i = 0; i < 4; i++)
             {
                 if (url.indexOf(pages[i]) != -1)
@@ -95,7 +95,7 @@ BBLog.handle("add.plugin",
                     }
                     if(instance.storage("option.hidebuttons"))
                     {
-                        dlcmenucode += '<ul class="sbd-hb-menu"><li style="width: 0.8%" class="sbd sbd-hb sbd-hb-all active"><a>All</a></li><li class="sbd sbd-hb sbd-uncompleted"><a>Uncompleted/locked</a></li><li class="sbd sbd-hb sbd-completed"><a>Completed/unlocked</a></li></ul>';
+                        dlcmenucode += '<ul class="sbd-menu"><li style="width: 0.8%" class="sbd sbd-hb sbd-hb-all active"><a>All</a></li><li class="sbd sbd-hb sbd-uncompleted"><a>Uncompleted/locked</a></li><li class="sbd sbd-hb sbd-completed"><a>Completed/unlocked</a></li></ul>';
                     }
                     $(".submenu.margin-top").append(dlcmenucode);
                 }
@@ -104,7 +104,7 @@ BBLog.handle("add.plugin",
         $(".sbd").click(function ()
         {
             $("#bn-show-all").click();
-            $(".sbd.active").removeClass("active");
+            $(".sbd.active, .sbd-hb.active").removeClass("active");
             if (!$(this).hasClass("sbd-hb"))
             {
             $(this).addClass("active");

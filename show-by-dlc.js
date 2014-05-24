@@ -39,13 +39,18 @@ BBLog.handle("add.plugin",
         },
         "pt":
         {
-			"all": "Tudo",
+            "all": "Tudo",
             "basegame": "Jogo Base",
         },
         "de":
         {
-			"all": "Alle",
+            "all": "Alle",
             "basegame": "Basisspiel",
+        },
+        "ru":
+        {
+            "all": "Все",
+            "basegame": "Основная игра",
         },
     },
 

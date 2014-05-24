@@ -49,6 +49,11 @@ BBLog.handle("add.plugin",
             "all": "Alle",
             "basegame": "Basisspiel",
         },
+        "ru":
+        {
+            "all": "Все",
+            "basegame": "Основная игра",
+        },
     },
 
     init: function (instance)
